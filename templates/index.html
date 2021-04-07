@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <!-- Favicon -->
+    <!--link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}"-->
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type = "text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+  </head>
+  <title style="color:white">Newton Load Testing Utility Tool</title>
+    <link rel="stylesheet" href="styles.css">
+  <body style="background-color: #141a2e;">
+
+    <h1 style="color:white"><img width="5%" src="https://is2-ssl.mzstatic.com/image/thumb/Purple124/v4/b4/15/61/b41561b4-cebb-1d5f-5ab1-8f4df8f68949/source/512x512bb.jpg" alt="Newton Logo"> Load Test Utility</h1>
+    <div class="card" style="background-color: #141a2e;">
+        <div class="card-body">
+          <form method="post">
+            <button class="btn btn-success mt-2" style="color:white">Show Results</button>
+          </form>
+
+          <div class="mt-4">
+              <h1 style="color:white">Request Statistics</h1>
+            {% if request.method == 'POST'%}
+              <table   style="background-color: #141a2e;" id="proxies" class="display table nowrap responsive" style="width: 100%">
+                <thead>
+                  <tr style="color:white">
+                    {% for header in results_request_stats[0].keys() %}
+                      <th>{{header}}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in results_request_stats %}
+                    <tr>
+                      {% for index in range(0, len(fieldnames_req)) %}
+                        <td>{{row[fieldnames_req[index]]}}</td>
+                      {% endfor %}
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% endif %}
+          </div>
+
+
+          
+
+
+
+
+
+        </div>
+      </div>
+  </body>
+  <script type="text/javascript">
+    $('#proxies').DataTable();
+  </script>
+  
+</html>
